@@ -24,7 +24,7 @@
             </div>
         }
 
-<table class="table table-striped">
+    <table class="table table-striped table-bordered">
         @*<tr>
 
                 <th>@Html.ActionLink("Title", "Index", new { currentFilter = ViewBag.CurrentFilter })</th>
@@ -33,15 +33,14 @@
 
         @foreach (var item in Model)
         {
-            @*<tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-            </tr>*@
+           
             <tr>
-                <td>                   
-                        @Html.DisplayFor(modelItem => item.Title)                
-                    
+                <th style="font-size:x-large;font-family:'Lucida Sans'">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </th>
+            </tr>
+            <tr>
+                <td>
                     @{
                         string Body = Server.HtmlDecode(item.Body);
                     }
@@ -53,7 +52,8 @@
 
     </table>
 
-        <br />
-        Page@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)of @Model.PageCount
 
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+    <br />
+    Page@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
